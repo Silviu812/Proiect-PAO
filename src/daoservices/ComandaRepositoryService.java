@@ -5,6 +5,7 @@ import models.Comanda;
 
 import java.util.List;
 
+
 public class ComandaRepositoryService {
     private final ComandaDAO comandaDAO = new ComandaDAO();
 
@@ -27,4 +28,6 @@ public class ComandaRepositoryService {
     public List<Comanda> getAllComenzi() {
         return comandaDAO.gasesteToateComenzile();
     }
+
 }
+

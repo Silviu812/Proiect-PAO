@@ -1,5 +1,5 @@
 package models;
-
+import aplicatie.Aplicatie;
 public class Furnizor {
     private int id;
     private String nume;
