@@ -43,4 +43,14 @@ public class ComandaDAO {
     public List<Comanda> gasesteToateComenzile() {
         return new ArrayList<>(comenzi);
     }
+
+    public static List<Comanda> gasesteComenzileClientului(int idClient) {
+        List<Comanda> comenziClient = new ArrayList<>();
+        for (Comanda comanda : comenzi) {
+            if (comanda.getClient().getId() == idClient) {
+                comenziClient.add(comanda);
+            }
+        }
+        return comenziClient;
+    }
 }

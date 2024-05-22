@@ -43,4 +43,6 @@ public class ClientDAO {
     public List<Client> gasesteTotiClientii() {
         return new ArrayList<>(clienti);
     }
+
+
 }

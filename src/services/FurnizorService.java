@@ -7,6 +7,7 @@ import daoservices.FurnizorRepositoryService;
 
 public class FurnizorService {
     private final FurnizorRepositoryService furnizorRepositoryService = new FurnizorRepositoryService();
+    private final Scanner scanner = new Scanner(System.in);
 
     public void adaugaFurnizor(Scanner scanner) {
         System.out.println("Introduceți detaliile furnizorului:");
@@ -71,6 +72,46 @@ public class FurnizorService {
             System.out.println("Nu exista furnizori inregistrati.");
         } else {
             furnizori.forEach(System.out::println);
+        }
+    }
+
+    public void meniufurnizor () {
+        boolean continuare = true;
+        while (continuare) {
+            System.out.println("[----- Meniu Furnizor -----]");
+            System.out.println("1. Adaugă furnizor");
+            System.out.println("2. Afișează furnizor dupa ID");
+            System.out.println("3. Actualizează furnizor");
+            System.out.println("4. Șterge furnizor");
+            System.out.println("5. Afișează toți furnizorii");
+            System.out.println("6. Înapoi");
+            System.out.print("Introduceți alegerea dvs: ");
+
+            int optiune = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (optiune) {
+                case 1:
+                    adaugaFurnizor(scanner);
+                    break;
+                case 2:
+                    getFurnizorById(scanner);
+                    break;
+                case 3:
+                    actualizeazaFurnizor(scanner);
+                    break;
+                case 4:
+                    stergeFurnizor(scanner);
+                    break;
+                case 5:
+                    afiseazaTotiFurnizorii();
+                    break;
+                case 6:
+                    continuare = false;
+                    break;
+                default:
+                    System.out.println("Alegere invalida, încercați din nou.");
+            }
         }
     }
 }

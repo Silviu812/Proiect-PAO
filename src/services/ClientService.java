@@ -8,6 +8,7 @@ import daoservices.ClientRepositoryService;
 
 public class ClientService {
     private final ClientRepositoryService clientRepositoryService = new ClientRepositoryService();
+    private final Scanner scanner = new Scanner(System.in);
 
     public void adaugaClient(Scanner scanner) {
         System.out.println("Introduceți detaliile clientului:");
@@ -76,5 +77,64 @@ public class ClientService {
         }
     }
 
+    public void afiseazaComenzileClientului(Scanner scanner) {
+        System.out.print("Introduceți ID-ul clientului: ");
+        int id = Integer.parseInt(scanner.nextLine());
+        Client client = clientRepositoryService.getClientById(id);
+        if (client != null) {
+            List<Comanda> comenzi = clientRepositoryService.getComenziByClientId(id);
+            if (comenzi.isEmpty()) {
+                System.out.println("Clientul nu are comenzi.");
+            } else {
+                System.out.println("Comenzile clientului " + client.getNume() + ":");
+                comenzi.forEach(System.out::println);
+            }
+        } else {
+            System.out.println("Clientul cu ID-ul " + id + " nu a fost găsit.");
+        }
+    }
 
+    public void meniuclienti() {
+        boolean continuare = true;
+        while (continuare) {
+            System.out.println("[----- Meniu Clienti -----]");
+            System.out.println("1. Adauga client");
+            System.out.println("2. Afiseaza toti clientii");
+            System.out.println("3. Afiseaza client dupa ID");
+            System.out.println("4. Actualizeaza client");
+            System.out.println("5. Sterge client");
+            System.out.println("6. Afiseaza comenzile unui client");
+            System.out.println("7. Inapoi");
+            System.out.print("Introduceti optiunea: ");
+
+            int optiune = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (optiune) {
+                case 1:
+                    adaugaClient(scanner);
+                    break;
+                case 2:
+                    afiseazaTotiClientii();
+                    break;
+                case 3:
+                    getClientById(scanner);
+                    break;
+                case 4:
+                    actualizeazaClient(scanner);
+                    break;
+                case 5:
+                    stergeClient(scanner);
+                    break;
+                case 6:
+                    afiseazaComenzileClientului(scanner);
+                    break;
+                case 7:
+                    continuare = false;
+                    break;
+                default:
+                    System.out.println("Optiune invalida. Va rugam sa incercati din nou.");
+            }
+        }
+    }
 }

@@ -7,6 +7,7 @@ import daoservices.ProdusRepositoryService;
 
 public class ProdusService {
     private final ProdusRepositoryService produsRepositoryService = new ProdusRepositoryService();
+    private final Scanner scanner = new Scanner(System.in);
 
     public void adaugaProdus(Scanner scanner) {
         System.out.println("Introduceți detaliile produsului:");
@@ -74,6 +75,45 @@ public class ProdusService {
             System.out.println("Nu există produse înregistrate.");
         } else {
             produse.forEach(System.out::println);
+        }
+    }
+    public void meniuproduse() {
+        boolean continuare = true;
+        while (continuare) {
+            System.out.println("[----- Meniu Produse -----]");
+            System.out.println("1. Adaugă produs");
+            System.out.println("2. Afișează un produs dupa ID");
+            System.out.println("3. Actualizează produs");
+            System.out.println("4. Șterge produs");
+            System.out.println("5. Afișează toate produsele");
+            System.out.println("6. Ieșire");
+            System.out.print("Introduceți alegerea dvs: ");
+
+            int optiune = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (optiune) {
+                case 1:
+                    adaugaProdus(scanner);
+                    break;
+                case 2:
+                    getProdusById(scanner);
+                    break;
+                case 3:
+                    actualizeazaProdus(scanner);
+                    break;
+                case 4:
+                    stergeProdus(scanner);
+                    break;
+                case 5:
+                    afiseazaToateProdusele();
+                    break;
+                case 6:
+                    continuare = false;
+                    break;
+                default:
+                    System.out.println("Alegere invalidă, încercați din nou.");
+            }
         }
     }
 }

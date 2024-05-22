@@ -6,15 +6,26 @@ import java.util.Scanner;
 import models.Comanda;
 import models.Client;
 import models.Produs;
-import daoservices.ComandaRepositoryService;
+import daoservices.*;
 
 public class ComandaService {
     private final ComandaRepositoryService comandaRepositoryService = new ComandaRepositoryService();
+    private final ClientRepositoryService clientRepositoryService = new ClientRepositoryService();
+    private final Scanner scanner = new Scanner(System.in);
 
     public void adaugaComanda(Scanner scanner) {
-        System.out.println("Introduceți detaliile comenzii:");
+        System.out.print("Introduceți ID-ul clientului: ");
+        int clientId = Integer.parseInt(scanner.nextLine());
+
+        Client client = clientRepositoryService.getClientById(clientId);
+        if (client == null) {
+            System.out.println("Clientul cu ID-ul " + clientId + " nu a fost găsit.");
+            return;
+        }
         Comanda comanda = new Comanda();
+        comanda.setClient(client);
         comandaRepositoryService.adaugaComanda(comanda);
+        System.out.println("Comanda adaugata cu succes.");
     }
 
     public Comanda getComandaById(Scanner scanner) {
@@ -59,6 +70,45 @@ public class ComandaService {
             System.out.println("Nu există comenzi înregistrate.");
         } else {
             comenzi.forEach(System.out::println);
+        }
+    }
+    public void meniucomenzi() {
+        boolean continuare = true;
+        while (continuare) {
+            System.out.println("[----- Meniu Comenzi -----]");
+            System.out.println("1. Adauga Comanda");
+            System.out.println("2. Afiseaza toate comenzile");
+            System.out.println("3. Afiseaza comanda dupa ID");
+            System.out.println("4. Actualizeaza comanda");
+            System.out.println("5. Sterge comanda");
+            System.out.println("6. Inapoi");
+            System.out.print("Introduceti optiunea: ");
+
+            int optiune = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (optiune) {
+                case 1:
+                    adaugaComanda(scanner);
+                    break;
+                case 2:
+                    afiseazaToateComenzile();
+                    break;
+                case 3:
+                    getComandaById(scanner);
+                    break;
+                case 4:
+                    actualizeazaComanda(scanner);
+                    break;
+                case 5:
+                    stergeComanda(scanner);
+                    break;
+                case 6:
+                    continuare = false;
+                    break;
+                default:
+                    System.out.println("Optiune invalida. Va rugam sa incercati din nou.");
+            }
         }
     }
 }

@@ -89,7 +89,9 @@ public class AngajatService {
                 .collect(Collectors.toList());
     }
 
-    public List<Angajat> getAngajatiBySalariuMinim(double salariuMinim) {
+    public List<Angajat> getAngajatiBySalariuMinim(Scanner scanner) {
+        System.out.print("Introduceti salariul minim: ");
+        double salariuMinim = Double.parseDouble(scanner.nextLine());
         List<Angajat> angajati = angajatRepositoryService.getAllAngajati();
         return angajati.stream()
                 .filter(angajat -> angajat.getSalariu() >= salariuMinim)
@@ -101,5 +103,58 @@ public class AngajatService {
         return angajati.stream()
                 .mapToDouble(Angajat::getSalariu)
                 .sum();
+    }
+
+    public void meniuangajati() {
+        boolean continuare = true;
+        while (continuare) {
+            System.out.println("[----- Meniu Angajati -----]");
+            System.out.println("1. Adaugare angajat");
+            System.out.println("2. Afisare angajat dupa ID");
+            System.out.println("3. Actualizare angajat");
+            System.out.println("4. Stergere angajat");
+            System.out.println("5. Afisare toti angajatii");
+            System.out.println("6. Afisare angajati dupa rol");
+            System.out.println("7. Afisare angajati cu salariu minim");
+            System.out.println("8. Calculare salariu total al angajatilor");
+            System.out.println("0. Iesire din meniu");
+            System.out.print("Alegeti o optiune: ");
+
+            Scanner scanner = new Scanner(System.in);
+
+            int optiune = Integer.parseInt(scanner.nextLine());
+
+            switch (optiune) {
+                case 1:
+                    adaugaAngajat(scanner);
+                    break;
+                case 2:
+                    getAngajatById(scanner);
+                    break;
+                case 3:
+                    actualizeazaAngajat(scanner);
+                    break;
+                case 4:
+                    stergeAngajat(scanner);
+                    break;
+                case 5:
+                    afiseazaTotiAngajatii();
+                    break;
+                case 6:
+                    getAngajatiByRol(String.valueOf(scanner));
+                    break;
+                case 7:
+                    getAngajatiBySalariuMinim(scanner);
+                    break;
+                case 8:
+                    System.out.println("Salariu total al angajatilor: " + calculareSalariuTotal());
+                    break;
+                case 0:
+                    continuare = false;
+                    break;
+                default:
+                    System.out.println("Optiune invalida. Va rugam sa incercati din nou.");
+            }
+        }
     }
 }
