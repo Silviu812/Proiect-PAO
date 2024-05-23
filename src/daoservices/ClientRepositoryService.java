@@ -8,12 +8,16 @@ import dao.ComandaDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class ClientRepositoryService {
     private final ClientDAO clientDAO = new ClientDAO();
+
+    public ClientRepositoryService() throws SQLException {
+    }
 
     public void adaugaClient(Client client) {
         clientDAO.creareClient(client);

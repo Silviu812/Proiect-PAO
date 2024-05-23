@@ -1,7 +1,10 @@
 package dao;
 
 import models.Produs;
+import utils.DBConnection;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -9,6 +12,10 @@ import java.util.Optional;
 public class ProdusDAO {
     private static int nextId = 1;
     private static List<Produs> produse = new ArrayList<>();
+    private Connection connection = DBConnection.getConnection();
+
+    public ProdusDAO() throws SQLException {
+    }
 
     public void creareProdus(Produs produs) {
         produs.setId(nextId++);

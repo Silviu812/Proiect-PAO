@@ -1,5 +1,6 @@
 package services;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 import models.Furnizor;
@@ -8,6 +9,9 @@ import daoservices.FurnizorRepositoryService;
 public class FurnizorService {
     private final FurnizorRepositoryService furnizorRepositoryService = new FurnizorRepositoryService();
     private final Scanner scanner = new Scanner(System.in);
+
+    public FurnizorService() throws SQLException {
+    }
 
     public void adaugaFurnizor(Scanner scanner) {
         System.out.println("Introduceți detaliile furnizorului:");

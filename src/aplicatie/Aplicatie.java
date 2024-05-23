@@ -8,9 +8,9 @@ import java.util.Scanner;
 public class Aplicatie {
     private static Aplicatie instance = null;
 
-    private Aplicatie() {}
+    private Aplicatie() throws SQLException {}
 
-    public static Aplicatie getInstance() {
+    public static Aplicatie getInstance() throws SQLException {
         if (instance == null) {
             instance = new Aplicatie();
         }
@@ -22,9 +22,10 @@ public class Aplicatie {
     public ClientService clientService = new ClientService();
     public ProdusService produsService = new ProdusService();
     public ComandaService comandaService = new ComandaService();
-    public FurnizorService depozitService = new FurnizorService();
+    public FurnizorService furnizorService = new FurnizorService();
 
     public void run() {
+
         int alegere = 0;
         while (alegere != 6) {
             afiseazaMeniu();
@@ -95,11 +96,12 @@ public class Aplicatie {
 
     private void furnizorServiceMeniu() throws SQLException {
         System.out.println("Meniu Furnizori : ");
+        furnizorService.meniufurnizor();
 
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         Aplicatie aplicatie = Aplicatie.getInstance();
         aplicatie.run();
     }

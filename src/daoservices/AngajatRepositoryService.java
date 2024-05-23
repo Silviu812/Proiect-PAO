@@ -3,10 +3,14 @@ package daoservices;
 import dao.AngajatDAO;
 import models.Angajat;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class AngajatRepositoryService {
     private final AngajatDAO angajatDAO = new AngajatDAO();
+
+    public AngajatRepositoryService() throws SQLException {
+    }
 
     public void adaugaAngajat(Angajat angajat) {
         angajatDAO.creareAngajat(angajat);

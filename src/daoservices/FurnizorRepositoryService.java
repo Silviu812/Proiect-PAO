@@ -3,10 +3,14 @@ package daoservices;
 import dao.FurnizorDAO;
 import models.Furnizor;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class FurnizorRepositoryService {
     private final FurnizorDAO furnizorDAO = new FurnizorDAO();
+
+    public FurnizorRepositoryService() throws SQLException {
+    }
 
     public void adaugaFurnizor(Furnizor furnizor) {
         furnizorDAO.creareFurnizor(furnizor);

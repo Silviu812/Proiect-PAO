@@ -3,12 +3,16 @@ package services;
 import daoservices.AngajatRepositoryService;
 import models.Angajat;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class AngajatService {
     private final AngajatRepositoryService angajatRepositoryService = new AngajatRepositoryService();
+
+    public AngajatService() throws SQLException {
+    }
 
     public void adaugaAngajat(Scanner scanner) {
         System.out.println("Introduceti detaliile angajatului:");

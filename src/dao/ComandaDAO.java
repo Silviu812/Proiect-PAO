@@ -1,7 +1,10 @@
 package dao;
 
 import models.Comanda;
+import utils.DBConnection;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -9,6 +12,10 @@ import java.util.Optional;
 public class ComandaDAO {
     private static int nextId = 1;
     private static List<Comanda> comenzi = new ArrayList<>();
+    private Connection connection = DBConnection.getConnection();
+
+    public ComandaDAO() throws SQLException {
+    }
 
     public void creareComanda(Comanda comanda) {
         comanda.setId(nextId++);

@@ -1,5 +1,6 @@
 package services;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 import models.Comanda;
@@ -9,6 +10,9 @@ import daoservices.ClientRepositoryService;
 public class ClientService {
     private final ClientRepositoryService clientRepositoryService = new ClientRepositoryService();
     private final Scanner scanner = new Scanner(System.in);
+
+    public ClientService() throws SQLException {
+    }
 
     public void adaugaClient(Scanner scanner) {
         System.out.println("Introduceți detaliile clientului:");

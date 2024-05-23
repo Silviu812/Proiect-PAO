@@ -1,7 +1,10 @@
 package dao;
 
 import models.Furnizor;
+import utils.DBConnection;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -9,6 +12,10 @@ import java.util.Optional;
 public class FurnizorDAO {
     private static int nextId = 1;
     private static List<Furnizor> furnizori = new ArrayList<>();
+    private Connection connection = DBConnection.getConnection();
+
+    public FurnizorDAO() throws SQLException {
+    }
 
     public void creareFurnizor(Furnizor furnizor) {
         furnizor.setId(nextId++);

@@ -3,11 +3,15 @@ package daoservices;
 import dao.ComandaDAO;
 import models.Comanda;
 
+import java.sql.SQLException;
 import java.util.List;
 
 
 public class ComandaRepositoryService {
     private final ComandaDAO comandaDAO = new ComandaDAO();
+
+    public ComandaRepositoryService() throws SQLException {
+    }
 
     public void adaugaComanda(Comanda comanda) {
         comandaDAO.creareComanda(comanda);

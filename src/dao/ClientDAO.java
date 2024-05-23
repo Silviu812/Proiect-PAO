@@ -1,7 +1,10 @@
 package dao;
 
 import models.Client;
+import utils.DBConnection;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -9,6 +12,10 @@ import java.util.Optional;
 public class ClientDAO {
     private static int nextId = 1;
     private static List<Client> clienti = new ArrayList<>();
+    private Connection connection = DBConnection.getConnection();
+
+    public ClientDAO() throws SQLException {
+    }
 
     public void creareClient(Client client) {
         client.setId(nextId++);

@@ -1,5 +1,6 @@
 package services;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,6 +13,9 @@ public class ComandaService {
     private final ComandaRepositoryService comandaRepositoryService = new ComandaRepositoryService();
     private final ClientRepositoryService clientRepositoryService = new ClientRepositoryService();
     private final Scanner scanner = new Scanner(System.in);
+
+    public ComandaService() throws SQLException {
+    }
 
     public void adaugaComanda(Scanner scanner) {
         System.out.print("Introduceți ID-ul clientului: ");

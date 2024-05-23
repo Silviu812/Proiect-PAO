@@ -1,5 +1,6 @@
 package services;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 import models.Produs;
@@ -8,6 +9,9 @@ import daoservices.ProdusRepositoryService;
 public class ProdusService {
     private final ProdusRepositoryService produsRepositoryService = new ProdusRepositoryService();
     private final Scanner scanner = new Scanner(System.in);
+
+    public ProdusService() throws SQLException {
+    }
 
     public void adaugaProdus(Scanner scanner) {
         System.out.println("Introduceți detaliile produsului:");
