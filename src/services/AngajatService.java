@@ -3,26 +3,37 @@ package services;
 import daoservices.AngajatRepositoryService;
 import models.Angajat;
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.sql.ResultSet;
+
+
+
+import utils.DBConnection;
+
+import java.sql.Connection;
 
 public class AngajatService {
-    private final AngajatRepositoryService angajatRepositoryService = new AngajatRepositoryService();
+    private final AngajatRepositoryService angajatRepositoryService;
+    private final Connection connection;
 
     public AngajatService() throws SQLException {
+        this.connection = DBConnection.getConnection();
+        this.angajatRepositoryService = new AngajatRepositoryService();
     }
 
     public void adaugaAngajat(Scanner scanner) {
-        System.out.println("Introduceti detaliile angajatului:");
+        System.out.println("Introduceți detaliile angajatului:");
         System.out.print("Nume: ");
         String nume = scanner.nextLine();
         System.out.print("Prenume: ");
         String prenume = scanner.nextLine();
         System.out.print("Email: ");
         String email = scanner.nextLine();
-        System.out.print("Parola: ");
+        System.out.print("Parolă: ");
         String parola = scanner.nextLine();
         System.out.print("Salariu: ");
         double salariu = Double.parseDouble(scanner.nextLine());
@@ -31,19 +42,11 @@ public class AngajatService {
 
         Angajat angajat = new Angajat(0, nume, prenume, email, parola, salariu, rol);
         angajatRepositoryService.adaugaAngajat(angajat);
-        System.out.println("Angajat adaugat cu succes.");
     }
-
     public Angajat getAngajatById(Scanner scanner) {
         System.out.print("Introduceti ID-ul angajatului: ");
         int id = Integer.parseInt(scanner.nextLine());
-        Angajat angajat = angajatRepositoryService.getAngajatById(id);
-        if (angajat != null) {
-            System.out.println("Detalii angajat: " + angajat);
-        } else {
-            System.out.println("Angajatul cu ID-ul " + id + " nu a fost gasit.");
-        }
-        return angajat;
+        return angajatRepositoryService.getAngajatById(id);
     }
 
     public void actualizeazaAngajat(Scanner scanner) {
@@ -51,15 +54,20 @@ public class AngajatService {
         int id = Integer.parseInt(scanner.nextLine());
         Angajat angajat = angajatRepositoryService.getAngajatById(id);
         if (angajat != null) {
-            System.out.print("Introduceti noul salariu: ");
-            double salariu = Double.parseDouble(scanner.nextLine());
-            System.out.print("Introduceti noul rol: ");
-            String rol = scanner.nextLine();
+            try {
+                System.out.print("Introduceti noul salariu: ");
+                double salariu = Double.parseDouble(scanner.nextLine());
+                System.out.print("Introduceti noul rol: ");
+                String rol = scanner.nextLine();
 
-            angajat.setSalariu(salariu);
-            angajat.setRol(rol);
-            angajatRepositoryService.actualizeazaAngajat(id, angajat);
-            System.out.println("Angajat actualizat cu succes.");
+                angajat.setSalariu(salariu);
+                angajat.setRol(rol);
+
+                angajatRepositoryService.actualizeazaAngajat(id, angajat);
+                System.out.println("Angajat actualizat cu succes.");
+            } catch (NumberFormatException e) {
+                System.out.println("Formatul salariului introdus este invalid.");
+            }
         } else {
             System.out.println("Angajatul cu ID-ul " + id + " nu a fost gasit.");
         }
@@ -87,19 +95,16 @@ public class AngajatService {
     }
 
     public List<Angajat> getAngajatiByRol(String rol) {
-        List<Angajat> angajati = angajatRepositoryService.getAllAngajati();
-        return angajati.stream()
-                .filter(angajat -> angajat.getRol().equalsIgnoreCase(rol))
-                .collect(Collectors.toList());
+        System.out.print("Introduceti rolul: ");
+        Scanner scanner1 = new Scanner(System.in);
+        String rol1 = scanner1.nextLine();
+        return angajatRepositoryService.getAngajatiByRol(rol1);
     }
 
     public List<Angajat> getAngajatiBySalariuMinim(Scanner scanner) {
         System.out.print("Introduceti salariul minim: ");
         double salariuMinim = Double.parseDouble(scanner.nextLine());
-        List<Angajat> angajati = angajatRepositoryService.getAllAngajati();
-        return angajati.stream()
-                .filter(angajat -> angajat.getSalariu() >= salariuMinim)
-                .collect(Collectors.toList());
+        return angajatRepositoryService.getAngajatiBySalariuMinim(salariuMinim);
     }
 
     public double calculareSalariuTotal() {

@@ -10,7 +10,7 @@ public class Client extends Utilizator {
         this.adresaLivare = adresaLivare;
     }
 
-    public String getAdresaLivare() {
+    public String getAdresaLivrare() {
         return adresaLivare;
     }
 

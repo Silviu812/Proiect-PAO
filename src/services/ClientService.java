@@ -107,7 +107,7 @@ public class ClientService {
             System.out.println("3. Afiseaza client dupa ID");
             System.out.println("4. Actualizeaza client");
             System.out.println("5. Sterge client");
-            System.out.println("6. Afiseaza comenzile unui client");
+            System.out.println("6. Afiseaza comenzile unui client (in lucru)");
             System.out.println("7. Inapoi");
             System.out.print("Introduceti optiunea: ");
 

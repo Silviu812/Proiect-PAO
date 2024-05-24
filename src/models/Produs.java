@@ -6,11 +6,15 @@ public class Produs {
     private double pret;
     private String categorie;
 
-    public Produs(int id, String nume, double pret, String categorie) {
+    public Produs(int id, String denumire, double pret, String categorie) {
         this.id = id;
-        this.denumire = nume;
+        this.denumire = denumire;
         this.pret = pret;
         this.categorie = categorie;
+    }
+
+    public Produs() {
+
     }
 
     public int getId() {

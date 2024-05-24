@@ -25,7 +25,7 @@ public class ProdusRepositoryService {
     }
 
     public void stergeProdus(Produs produs) {
-        produsDAO.stergereProdus(produs);
+        produsDAO.stergereProdus(produs.getId());
     }
 
     public List<Produs> getAllProduse() {

@@ -25,10 +25,18 @@ public class AngajatRepositoryService {
     }
 
     public void stergeAngajat(Angajat angajat) {
-        angajatDAO.stergereAngajat(angajat);
+        angajatDAO.stergereAngajat(angajat.getId());
     }
 
     public List<Angajat> getAllAngajati() {
         return angajatDAO.gasesteTotiAngajatii();
+    }
+
+    public List<Angajat> getAngajatiByRol(String rol) {
+        return angajatDAO.getAngajatiByRol(rol);
+    }
+
+    public List<Angajat> getAngajatiBySalariuMinim(double salariuMinim) {
+        return angajatDAO.getAngajatiBySalariuMinim(salariuMinim);
     }
 }

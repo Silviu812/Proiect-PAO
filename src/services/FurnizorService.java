@@ -20,11 +20,10 @@ public class FurnizorService {
         System.out.print("Adresa: ");
         String adresa = scanner.nextLine();
 
-        Furnizor furnizor = new Furnizor();
+        Furnizor furnizor = new Furnizor(0, nume, adresa);
         furnizor.setNume(nume);
         furnizor.setAdresa(adresa);
         furnizorRepositoryService.adaugaFurnizor(furnizor);
-        System.out.println("Furnizor adăugat cu succes.");
     }
 
     public Furnizor getFurnizorById(Scanner scanner) {
@@ -64,7 +63,6 @@ public class FurnizorService {
         Furnizor furnizor = furnizorRepositoryService.getFurnizorById(id);
         if (furnizor != null) {
             furnizorRepositoryService.stergeFurnizor(furnizor);
-            System.out.println("Furnizor sters cu succes.");
         } else {
             System.out.println("Furnizorul cu ID-ul " + id + " nu a fost gasit.");
         }

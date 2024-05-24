@@ -25,7 +25,7 @@ public class FurnizorRepositoryService {
     }
 
     public void stergeFurnizor(Furnizor furnizor) {
-        furnizorDAO.stergereFurnizor(furnizor);
+        furnizorDAO.stergereFurnizor(furnizor.getId());
     }
 
     public List<Furnizor> getAllFurnizori() {

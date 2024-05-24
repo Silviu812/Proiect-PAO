@@ -5,6 +5,12 @@ public class Furnizor {
     private String nume;
     private String adresa;
 
+    public Furnizor(int idFurnizori, String nume, String adresa) {
+        this.id = idFurnizori;
+        this.nume = nume;
+        this.adresa = adresa;
+    }
+
     public int getId() {
         return id;
     }

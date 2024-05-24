@@ -32,7 +32,7 @@ public class ClientRepositoryService {
     }
 
     public void stergeClient(Client client) {
-        clientDAO.stergereClient(client);
+        clientDAO.stergereClient(client.getId());
     }
 
     public List<Client> getAllClienti() {
