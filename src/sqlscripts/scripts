@@ -1,0 +1,167 @@
+CREATE TABLE proiectpao.angajati (
+  id INT NOT NULL AUTO_INCREMENT,
+  nume VARCHAR(45) NULL,
+  prenume VARCHAR(45) NULL,
+  email VARCHAR(45) NULL,
+  parola VARCHAR(45) NULL,
+  salariu INT NULL,
+  rol VARCHAR(45) NULL,
+  PRIMARY KEY (id));
+
+CREATE TABLE proiectpao.clienti (
+  idclienti INT NOT NULL AUTO_INCREMENT,
+  nume VARCHAR(45) NULL,
+  prenume VARCHAR(45) NULL,
+  email VARCHAR(45) NULL,
+  parola VARCHAR(45) NULL,
+  adresalivrare VARCHAR(45) NULL,
+  PRIMARY KEY (idclienti));
+
+CREATE TABLE proiectpao.produse (
+  idproduse INT NOT NULL AUTO_INCREMENT,
+  denumire VARCHAR(45) NULL,
+  pret INT NULL,
+  categorie VARCHAR(45) NULL,
+  PRIMARY KEY (idproduse));
+
+CREATE TABLE proiectpao.comenzi (
+  idcomenzi INT NOT NULL AUTO_INCREMENT,
+  idclienti INT NOT NULL,
+  PRIMARY KEY (idcomenzi),
+  FOREIGN KEY (idclienti) REFERENCES clienti(idclienti)
+);
+
+
+CREATE TABLE proiectpao.comenzi_produse (
+  idcomenzi INT NOT NULL,
+  idproduse INT NOT NULL,
+  PRIMARY KEY (idcomenzi, idproduse),
+  FOREIGN KEY (idcomenzi) REFERENCES comenzi(idcomenzi),
+  FOREIGN KEY (idproduse) REFERENCES produse(idproduse)
+);
+
+
+CREATE TABLE `furnizori` (
+  `idfurnizori` int NOT NULL AUTO_INCREMENT,
+  `nume` varchar(45) DEFAULT NULL,
+  `adresa` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idfurnizori`)
+);
+
+INSERT INTO proiectpao.angajati (nume, prenume, email, parola, salariu, rol)
+VALUES ('Vasilescu', 'Alexandru', 'alexandru.vasilescu@example.com', 'parola111', 3200, 'Inginer');
+
+INSERT INTO proiectpao.angajati (nume, prenume, email, parola, salariu, rol)
+VALUES ('Marin', 'Cristina', 'cristina.marin@example.com', 'parola222', 2900, 'Designer');
+
+INSERT INTO proiectpao.angajati (nume, prenume, email, parola, salariu, rol)
+VALUES ('Popa', 'Daniel', 'daniel.popa@example.com', 'parola333', 3100, 'Consultant');
+
+INSERT INTO proiectpao.angajati (nume, prenume, email, parola, salariu, rol)
+VALUES ('Radu', 'Gabriela', 'gabriela.radu@example.com', 'parola444', 3000, 'Marketing');
+
+INSERT INTO proiectpao.angajati (nume, prenume, email, parola, salariu, rol)
+VALUES ('Moldovan', 'Florin', 'florin.moldovan@example.com', 'parola555', 2700, 'Vanzari');
+
+INSERT INTO proiectpao.produse (denumire, pret, categorie)
+VALUES ('Laptop', 3500, 'Electronice');
+
+INSERT INTO proiectpao.produse (denumire, pret, categorie)
+VALUES ('Telefon', 2000, 'Electronice');
+
+INSERT INTO proiectpao.produse (denumire, pret, categorie)
+VALUES ('Televizor', 2800, 'Electronice');
+
+INSERT INTO proiectpao.produse (denumire, pret, categorie)
+VALUES ('Frigider', 1500, 'Electrocasnice');
+
+INSERT INTO proiectpao.produse (denumire, pret, categorie)
+VALUES ('Masina de spalat', 1800, 'Electrocasnice');
+
+INSERT INTO proiectpao.produse (denumire, pret, categorie)
+VALUES ('Cuptor cu microunde', 700, 'Electrocasnice');
+
+INSERT INTO proiectpao.produse (denumire, pret, categorie)
+VALUES ('Mixer', 300, 'Electrocasnice');
+
+INSERT INTO proiectpao.produse (denumire, pret, categorie)
+VALUES ('Imprimanta', 600, 'Electronice');
+
+INSERT INTO proiectpao.produse (denumire, pret, categorie)
+VALUES ('Router', 250, 'Electronice');
+
+INSERT INTO proiectpao.produse (denumire, pret, categorie)
+VALUES ('Monitor', 900, 'Electronice');
+
+INSERT INTO furnizori (nume, adresa)
+VALUES ('SC TechSupply SRL', 'Strada Tehnologiei 15, Bucuresti');
+
+INSERT INTO furnizori (nume, adresa)
+VALUES ('ElectroDistrib SRL', 'Strada Energiei 22, Cluj-Napoca');
+
+INSERT INTO furnizori (nume, adresa)
+VALUES ('HomeAppliance SA', 'Bulevardul Industriilor 10, Timisoara');
+
+INSERT INTO proiectpao.clienti (nume, prenume, email, parola, adresalivrare)
+VALUES ('Messi', 'Lionel', 'lionel.messi@example.com', 'parola123', 'Strada Campionilor 10, Barcelona');
+
+INSERT INTO proiectpao.clienti (nume, prenume, email, parola, adresalivrare)
+VALUES ('Ronaldo', 'Cristiano', 'cristiano.ronaldo@example.com', 'parola456', 'Aleea Victoriei 7, Torino');
+
+INSERT INTO proiectpao.clienti (nume, prenume, email, parola, adresalivrare)
+VALUES ('Neymar', 'Jr', 'neymar.jr@example.com', 'parola789', 'Strada Fotbalului 15, Paris');
+
+INSERT INTO proiectpao.clienti (nume, prenume, email, parola, adresalivrare)
+VALUES ('Mbappe', 'Kylian', 'kylian.mbappe@example.com', 'parola321', 'Bulevardul Gloriei 20, Paris');
+
+INSERT INTO proiectpao.clienti (nume, prenume, email, parola, adresalivrare)
+VALUES ('Lewandowski', 'Robert', 'robert.lewandowski@example.com', 'parola654', 'Strada Golgeterilor 30, Munchen');
+
+INSERT INTO proiectpao.comenzi (idclienti)
+VALUES (1);
+
+INSERT INTO proiectpao.comenzi (idclienti)
+VALUES (2);
+
+INSERT INTO proiectpao.comenzi (idclienti)
+VALUES (3);
+
+INSERT INTO proiectpao.comenzi (idclienti)
+VALUES (4);
+
+INSERT INTO proiectpao.comenzi (idclienti)
+VALUES (5);
+
+INSERT INTO proiectpao.comenzi_produse (idcomenzi, idproduse)
+VALUES (1, 1);
+
+INSERT INTO proiectpao.comenzi_produse (idcomenzi, idproduse)
+VALUES (1, 2);
+
+INSERT INTO proiectpao.comenzi_produse (idcomenzi, idproduse)
+VALUES (2, 3);
+
+INSERT INTO proiectpao.comenzi_produse (idcomenzi, idproduse)
+VALUES (2, 4);
+
+INSERT INTO proiectpao.comenzi_produse (idcomenzi, idproduse)
+VALUES (3, 5);
+
+INSERT INTO proiectpao.comenzi_produse (idcomenzi, idproduse)
+VALUES (3, 6);
+
+INSERT INTO proiectpao.comenzi_produse (idcomenzi, idproduse)
+VALUES (4, 7);
+
+INSERT INTO proiectpao.comenzi_produse (idcomenzi, idproduse)
+VALUES (4, 8);
+
+INSERT INTO proiectpao.comenzi_produse (idcomenzi, idproduse)
+VALUES (5, 9);
+
+INSERT INTO proiectpao.comenzi_produse (idcomenzi, idproduse)
+VALUES (5, 10);
+
+
+
+
